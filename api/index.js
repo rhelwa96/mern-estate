@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import Routes from './routes/index.js';
 dotenv.config();
+const app = express();
+app.use(express.json())
 
 mongoose.connect(process.env.MONGO)
 .then(()=>{
@@ -12,9 +14,9 @@ mongoose.connect(process.env.MONGO)
     console.log(err)
 });
 
-const app = express();
+
 app.listen(3000, ()=>{
     console.log('Server is running on port 3000')
 });
 
-app.use('/api/',Routes);
+app.use('/api',Routes);
